@@ -1919,8 +1919,8 @@
                     </div>
                 </div>
                 <div id="text-area" contenteditable="true" data-placeholder="Écrivez votre thème ici..."></div>
-<div id="image-preview">
-    <img id="generated-image" src="" alt="Generated image" style="display: none;">
+<div id="image-preview" style="display: none;">
+    <img id="generated-image" alt="Generated image">
     <button id="regenerate-image" style="display: none;" onclick="regenerateImage()">
         <svg class="regenerate-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.3"/>
@@ -3397,9 +3397,18 @@
                 const imageUrl = data.data[0].url;
                 
                 // Mettre à jour l'image générée
+                const imagePreview = document.getElementById('image-preview');
                 const generatedImage = document.getElementById('generated-image');
-                generatedImage.src = imageUrl;
-                generatedImage.style.display = 'block';
+                const regenerateButton = document.getElementById('regenerate-image');
+                
+                if (generatedImage && imagePreview && regenerateButton) {
+                    generatedImage.src = imageUrl;
+                    imagePreview.style.display = 'flex';
+                    generatedImage.style.display = 'block';
+                    regenerateButton.style.display = 'block';
+                } else {
+                    throw new Error('Éléments d\'interface non trouvés');
+                }
                 
                 console.log('Image générée avec succès');
                 return imageUrl;

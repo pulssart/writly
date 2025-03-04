@@ -2167,48 +2167,141 @@
         // Assurez-vous d'appeler updateUserInfo() au chargement de la page et après chaque génération de post
         document.addEventListener('DOMContentLoaded', updateUserInfo);
 
-        // Dans la fonction generateText, après la génération réussie du texte
+        // Ajout des tableaux de hooks pour chaque style
+        const hooks = {
+            inspiring: [
+                "I want to tell you a story how...",
+                "Imagine you're...",
+                "I want to be honest for a second",
+                "I have to talk about this",
+                "Storytime...",
+                "I committed to [doing thing] [time] ago. Here are my results:",
+                "I couldn't believe it",
+                "There had to be another way",
+                "I put everything I had into it",
+                "It felt like a punch to the gut...",
+                "I lost everything, but...",
+                "My hands were shaking when...",
+                "I wanted to give up, until...",
+                "Here's what changed everything for me...",
+                "The moment I realized...",
+                "What I'm about to share...",
+                "This transformed my approach to...",
+                "The truth about success is..."
+            ],
+            promotional: [
+                "Need ideas for...",
+                "Did you know that...",
+                "Wondering how to...",
+                "Here's how you can [do thing] for free:",
+                "The easiest way to...",
+                "I was so impressed by X I thought I'd share it",
+                "Here are the secrets to...",
+                "Quick hack to...",
+                "This changed everything in my...",
+                "The one tool that transformed my...",
+                "Want to know how I...",
+                "I discovered this game-changing...",
+                "This approach revolutionized my...",
+                "The strategy that doubled my...",
+                "Finally, a solution for...",
+                "Stop struggling with... Here's why:"
+            ],
+            actionable: [
+                "X Tips to...",
+                "Here's how to [do thing] in simple steps:",
+                "X ways to...",
+                "Quick tip to...",
+                "Here are X dead-simple ways to...",
+                "These traits are so underrated, yet they can...",
+                "[advice] — here's how:",
+                "X things that destroy [something your audience cares about]:",
+                "The framework I use to...",
+                "Step-by-step guide to...",
+                "Master these X skills to...",
+                "Transform your results with these X...",
+                "The exact method I use for...",
+                "X proven strategies to...",
+                "The ultimate checklist for...",
+                "Here's what actually works for..."
+            ],
+            funny: [
+                "I tried [doing thing]. There were weird results:",
+                "You would not believe this",
+                "This is one of the most fierce enemies of...",
+                "Doing _____ is like _____. Here's why",
+                "It felt like a punch to the gut...",
+                "They laughed at me",
+                "It was brutal",
+                "Unpopular opinion:",
+                "The hilarious truth about...",
+                "What nobody tells you about...",
+                "The biggest myth in...",
+                "Plot twist:",
+                "The real reason why...",
+                "When everything went wrong...",
+                "The awkward moment when...",
+                "This is what happens when..."
+            ]
+        };
+
+        // Modification de la fonction generateText pour utiliser les hooks
         async function generateText(style) {
-            const progressBarContainer = document.querySelector('.progress-bar-container');
-            const progressBar = document.querySelector('.progress-bar');
-            
-            // Afficher la barre de progression
-            progressBarContainer.style.display = 'block';
-            progressBar.style.width = '0%';
-
-            // Simuler une progression pour la génération de texte
-            let progress = 0;
-            const progressInterval = setInterval(() => {
-                progress += 2.5;
-                if (progress > 45) {
-                    clearInterval(progressInterval);
-                }
-                progressBar.style.width = `${progress}%`;
-            }, 100);
-
-            const apiKey = localStorage.getItem('openaiApiKey');
-            const jobTitle = localStorage.getItem('userJobTitle') || 'professionnel';
-            const userBackground = localStorage.getItem('userBackground') || 'Pas de contexte fourni';
-            const language = localStorage.getItem('userLanguage') || 'français';
-            const autoTranslate = localStorage.getItem('autoTranslate') !== 'false'; // Par défaut à true si non défini
-            
-            if (!apiKey) {
-                alert('Veuillez définir votre clé API OpenAI dans les paramètres.');
-                return;
-            }
-
-            const textArea = document.getElementById('text-area');
-            const theme = textArea.textContent.trim();
-
-            if (!theme || theme === textArea.getAttribute('data-placeholder')) {
-                alert('Veuillez entrer un thème avant de générer du contenu.');
-                return;
-            }
-
-            // Récupérer le prompt personnalisé pour ce style
-            let stylePrompt = getCustomPrompt(style, theme);
-
             try {
+                const apiKey = localStorage.getItem('openaiApiKey');
+                if (!apiKey) {
+                    alert('Veuillez d\'abord configurer votre clé API OpenAI dans les paramètres.');
+                    return;
+                }
+
+                // Sélection aléatoire d'un hook pour le style choisi
+                const styleHooks = hooks[style];
+                const randomHook = styleHooks[Math.floor(Math.random() * styleHooks.length)];
+                
+                const textArea = document.getElementById('text-area');
+                const theme = textArea.textContent.trim();
+                
+                if (!theme) {
+                    alert('Veuillez d\'abord entrer un thème.');
+                    return;
+                }
+
+                // Modification du prompt pour inclure le hook
+                const prompt = {
+                    role: 'user',
+                    content: `Utilise ce hook: "${randomHook}" pour créer un post LinkedIn ${style} sur le thème: ${theme}`
+                };
+
+                const progressBarContainer = document.querySelector('.progress-bar-container');
+                const progressBar = document.querySelector('.progress-bar');
+                
+                // Afficher la barre de progression
+                progressBarContainer.style.display = 'block';
+                progressBar.style.width = '0%';
+
+                // Simuler une progression pour la génération de texte
+                let progress = 0;
+                const progressInterval = setInterval(() => {
+                    progress += 2.5;
+                    if (progress > 45) {
+                        clearInterval(progressInterval);
+                    }
+                    progressBar.style.width = `${progress}%`;
+                }, 100);
+
+                const jobTitle = localStorage.getItem('userJobTitle') || 'professionnel';
+                const userBackground = localStorage.getItem('userBackground') || 'Pas de contexte fourni';
+                const language = localStorage.getItem('userLanguage') || 'français';
+                const autoTranslate = localStorage.getItem('autoTranslate') !== 'false'; // Par défaut à true si non défini
+                
+                if (!apiKey) {
+                    alert('Veuillez définir votre clé API OpenAI dans les paramètres.');
+                    return;
+                }
+
+                // Récupérer le prompt personnalisé pour ce style
+                let stylePrompt = getCustomPrompt(style, theme);
+
                 const response = await fetch('https://api.openai.com/v1/chat/completions', {
                     method: 'POST',
                     headers: {

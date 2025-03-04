@@ -2218,11 +2218,11 @@
                         model: "gpt-4.5-preview-2025-02-27",
                         messages: [
                             {
-                                role: "system",
-                                content: language === 'français' 
-                                    ? "Écrivez comme si vous parliez à un ami. Utilisez des phrases courtes et simples. Pas d'emoji. Pas de formatage. Faites beaucoup de retours à la ligne pour la lecture sur mobile. Évitez les accroches génériques et les structures question-réponse. Si vous posez une question finale, gardez-la simple comme 'Qu'en pensez-vous?' et uniquement quand ça a du sens. Écrivez comme un humain qui partage son expérience, pas comme une IA."
-                                    : "Write like you're talking to a friend. Use short and simple sentences. No emojis. No formatting. Add plenty of line breaks for mobile reading. Avoid generic hooks and question-answer structures. If you ask a final question, keep it simple like 'What's your take?' and only when it makes sense. Write like a human sharing their experience, not like AI."
-                            },
+    role: "system",
+    content: language === 'français' 
+        ? "Écris comme si tu parlais à un ami. Simple, naturel. Pas d'emoji. Pas de mise en forme. Pas de hashtags. Alterne phrases courtes et longues, mais reste fluide. Beaucoup de sauts de ligne pour la lisibilité sur mobile. Évite les accroches génériques qui sonnent fake. Pas de structure question-réponse comme 'Le secret ? C'est plus simple que tu ne le penses'. Si tu poses une question à la fin, fais-la naturelle et pertinente, comme 'T'en penses quoi ?'. Écris comme un humain, pas comme une IA. Utilise des mots simples, comme si tu avais 10 ans."
+        : "Write like you're talking to a friend. Simple, natural. No emojis. No formatting. No hashtags. Alternate short and long sentences, but keep it flowing. Lots of line breaks for mobile readability. Avoid generic hooks that sound fake. No question-answer structures like 'The tweak? It’s simpler than you think.' If you ask a final question, make it natural and relevant, like 'What’s your take?'. Write like a human, not AI. Use simple words, like a 10-year-old."
+},
                             {
                                 role: "user",
                                 content: stylePrompt

@@ -2220,8 +2220,13 @@
                             {
                                 role: "system",
                                 content: language === 'français' 
+<<<<<<< HEAD
+                                    ? "Écrivez comme si vous parliez à un ami. Utilisez des phrases courtes et simples. Pas d'emoji. Pas de formatage. Faites beaucoup de retours à la ligne pour la lecture sur mobile. Évitez les accroches génériques et les structures question-réponse. Si vous posez une question finale, gardez-la simple comme 'Qu'en pensez-vous?' et uniquement quand ça a du sens. Écrivez comme un humain qui partage son expérience, pas comme une IA."
+                                    : "Write like you're talking to a friend. Use short and simple sentences. No emojis. No formatting. Add plenty of line breaks for mobile reading. Avoid generic hooks and question-answer structures. If you ask a final question, keep it simple like 'What's your take?' and only when it makes sense. Write like a human sharing their experience, not like AI."
+=======
                                     ? "Vous êtes un expert en création de contenu LinkedIn. Créez des posts engageants et professionnels qui génèrent des interactions. Répondez toujours en français."
                                     : "You are an expert in LinkedIn content creation. Create engaging and professional posts that generate interactions. Always respond in English."
+>>>>>>> 103981436a7ef607775033d2e6a550332f25db0c
                             },
                             {
                                 role: "user",
@@ -2701,6 +2706,22 @@
                     switch(i) {
                         case 1:
                             defaultName = 'Inspirant';
+<<<<<<< HEAD
+                            defaultPrompt = 'Partagez une expérience sur {theme} de façon simple et directe. Utilisez des phrases courtes. Pas de formatage. Pas d\'emoji. Espacez bien les lignes pour la lecture mobile. Écrivez comme si vous parliez à un ami.';
+                            break;
+                        case 2:
+                            defaultName = 'Promotionnel';
+                            defaultPrompt = 'Racontez simplement ce qui est intéressant avec {theme}. Allez droit au but. Utilisez des mots simples. Faites des retours à la ligne fréquents. Restez naturel comme dans une conversation.';
+                            break;
+                        case 3:
+                            defaultName = 'Actionnable';
+                            defaultPrompt = 'Expliquez {theme} comme si vous parliez à un débutant. Phrases simples et courtes. Beaucoup d\'espaces entre les lignes. Pas de formatage ni d\'emoji. Donnez des conseils pratiques sans complexité.';
+                            break;
+                        case 4:
+                            defaultName = 'Drôle';
+                            defaultPrompt = 'Une histoire légère sur {theme}. Gardez ça simple et naturel. Comme si vous la racontiez à un ami. Phrases courtes. Espacez bien le texte. Sans emoji ni formatage.';
+                            break;
+=======
                             defaultPrompt = 'Créez un post LinkedIn inspirant sur le thème "{theme}". Le post ne doit pas avoir de liste d\'action ou de point, il doit être impactant. Le post doit motiver et encourager les lecteurs.';
                     break;
                         case 2:
@@ -2715,11 +2736,27 @@
                             defaultName = 'Drôle';
                             defaultPrompt = 'Rédigez un post LinkedIn humoristique et court sur le thème "{theme}". Le post doit être léger, amusant et impactant.';
                     break;
+>>>>>>> 103981436a7ef607775033d2e6a550332f25db0c
                     }
                 } else {
                     switch(i) {
                         case 1:
                             defaultName = 'Inspiring';
+<<<<<<< HEAD
+                            defaultPrompt = 'Share an experience about {theme} in a simple, direct way. Use short sentences. No formatting. No emojis. Space out lines for mobile reading. Write like you\'re talking to a friend.';
+                            break;
+                        case 2:
+                            defaultName = 'Promotional';
+                            defaultPrompt = 'Tell us what\'s interesting about {theme}. Get straight to the point. Use simple words. Add frequent line breaks. Keep it natural like a conversation.';
+                            break;
+                        case 3:
+                            defaultName = 'Actionable';
+                            defaultPrompt = 'Explain {theme} like you\'re talking to a beginner. Simple, short sentences. Lots of space between lines. No formatting or emojis. Give practical advice without complexity.';
+                            break;
+                        case 4:
+                            defaultName = 'Funny';
+                            defaultPrompt = 'A light story about {theme}. Keep it simple and natural. Like you\'re telling it to a friend. Short sentences. Well-spaced text. No emojis or formatting.';
+=======
                             defaultPrompt = 'Create an inspiring LinkedIn post about "{theme}". The post should not have a list of actions or points, it should be impactful. The post should motivate and encourage readers.';
                             break;
                         case 2:
@@ -2733,6 +2770,7 @@
                         case 4:
                             defaultName = 'Funny';
                             defaultPrompt = 'Write a humorous and short LinkedIn post about "{theme}". The post should be light, fun and impactful.';
+>>>>>>> 103981436a7ef607775033d2e6a550332f25db0c
                             break;
                     }
                 }

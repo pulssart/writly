@@ -378,11 +378,12 @@
         .settings-topbar-right {
             display: flex;
             align-items: center;
-            gap: 16px;
+            gap: 24px; /* Augmentation de l'espacement entre les boutons */
         }
 
         .settings-content button.topbar-save {
             margin: 0;
+            margin-right: 8px; /* Ajout d'une marge à droite du bouton Sauvegarder */
         }
 
         body.dark-mode .settings-content {
@@ -467,9 +468,9 @@
         }
 
         .close-button {
-            position: absolute;
-            top: 16px;
-            right: 16px;
+            position: relative; /* Changement de position: absolute à relative */
+            top: auto;
+            right: auto;
             color: rgba(0, 0, 0, 0.6);
             font-size: 24px;
             font-weight: normal;
@@ -2217,11 +2218,11 @@
                     body: JSON.stringify({
                         model: "gpt-4.5-preview-2025-02-27",
                         messages: [
-                            {
+                        {
     role: "system",
     content: language === 'français' 
         ? "Écris comme si tu parlais à un ami. Simple, naturel. Pas d'emoji. Pas de mise en forme. Pas de hashtags. Alterne phrases courtes et longues, mais reste fluide. Beaucoup de sauts de ligne pour la lisibilité sur mobile. Évite les accroches génériques qui sonnent fake. Pas de structure question-réponse comme 'Le secret ? C'est plus simple que tu ne le penses'. Si tu poses une question à la fin, fais-la naturelle et pertinente, comme 'T'en penses quoi ?'. Écris comme un humain, pas comme une IA. Utilise des mots simples, comme si tu avais 10 ans."
-        : "Write like you're talking to a friend. Simple, natural. No emojis. No formatting. No hashtags. Alternate short and long sentences, but keep it flowing. Lots of line breaks for mobile readability. Avoid generic hooks that sound fake. No question-answer structures like 'The tweak? It’s simpler than you think.' If you ask a final question, make it natural and relevant, like 'What’s your take?'. Write like a human, not AI. Use simple words, like a 10-year-old."
+        : "Write like you're talking to a friend. Simple, natural. No emojis. No formatting. No hashtags. Alternate short and long sentences, but keep it flowing. Lots of line breaks for mobile readability. Avoid generic hooks that sound fake. No question-answer structures like 'The tweak? It's simpler than you think.' If you ask a final question, make it natural and relevant, like 'What's your take?'. Write like a human, not AI. Use simple words, like a 10-year-old."
 },
                             {
                                 role: "user",
@@ -2701,38 +2702,38 @@
                     switch(i) {
                         case 1:
                             defaultName = 'Inspirant';
-                            defaultPrompt = 'Créez un post LinkedIn inspirant sur le thème "{theme}". Le post ne doit pas avoir de liste d\'action ou de point, il doit être impactant. Le post doit motiver et encourager les lecteurs.';
-                    break;
+                            defaultPrompt = 'Partagez une expérience sur {theme} de façon simple et directe. Utilisez des phrases courtes. Pas de formatage. Pas d\'emoji. Espacez bien les lignes pour la lecture mobile. Écrivez comme si vous parliez à un ami.';
+                            break;
                         case 2:
                             defaultName = 'Promotionnel';
-                            defaultPrompt = 'Rédigez un post LinkedIn promotionnel sur le thème "{theme}". Mettez en avant les avantages et aspects positifs du sujet.';
-                    break;
+                            defaultPrompt = 'Racontez simplement ce qui est intéressant avec {theme}. Allez droit au but. Utilisez des mots simples. Faites des retours à la ligne fréquents. Restez naturel comme dans une conversation.';
+                            break;
                         case 3:
                             defaultName = 'Actionnable';
-                            defaultPrompt = 'Créez un post LinkedIn actionnable sur le thème "{theme}". Proposez des actions concrètes avec des objectifs clairs.';
-                    break;
+                            defaultPrompt = 'Expliquez {theme} comme si vous parliez à un débutant. Phrases simples et courtes. Beaucoup d\'espaces entre les lignes. Pas de formatage ni d\'emoji. Donnez des conseils pratiques sans complexité.';
+                            break;
                         case 4:
                             defaultName = 'Drôle';
-                            defaultPrompt = 'Rédigez un post LinkedIn humoristique et court sur le thème "{theme}". Le post doit être léger, amusant et impactant.';
-                    break;
+                            defaultPrompt = 'Une histoire légère sur {theme}. Gardez ça simple et naturel. Comme si vous la racontiez à un ami. Phrases courtes. Espacez bien le texte. Sans emoji ni formatage.';
+                            break;
                     }
                 } else {
                     switch(i) {
                         case 1:
                             defaultName = 'Inspiring';
-                            defaultPrompt = 'Create an inspiring LinkedIn post about "{theme}". The post should not have a list of actions or points, it should be impactful. The post should motivate and encourage readers.';
+                            defaultPrompt = 'Share an experience about {theme} in a simple, direct way. Use short sentences. No formatting. No emojis. Space out lines for mobile reading. Write like you\'re talking to a friend.';
                             break;
                         case 2:
                             defaultName = 'Promotional';
-                            defaultPrompt = 'Write a promotional LinkedIn post about "{theme}". Highlight the benefits and positive aspects of the subject.';
+                            defaultPrompt = 'Tell us what\'s interesting about {theme}. Get straight to the point. Use simple words. Add frequent line breaks. Keep it natural like a conversation.';
                             break;
                         case 3:
                             defaultName = 'Actionable';
-                            defaultPrompt = 'Create an actionable LinkedIn post about "{theme}". Propose concrete actions with clear objectives.';
+                            defaultPrompt = 'Explain {theme} like you\'re talking to a beginner. Simple, short sentences. Lots of space between lines. No formatting or emojis. Give practical advice without complexity.';
                             break;
                         case 4:
                             defaultName = 'Funny';
-                            defaultPrompt = 'Write a humorous and short LinkedIn post about "{theme}". The post should be light, fun and impactful.';
+                            defaultPrompt = 'A light story about {theme}. Keep it simple and natural. Like you\'re telling it to a friend. Short sentences. Well-spaced text. No emojis or formatting.';
                             break;
                     }
                 }
@@ -3622,3 +3623,4 @@
     </script>
 </body>
 </html>
+

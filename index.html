@@ -1934,8 +1934,9 @@
                     <button class="style-button" onclick="generateText('funny')">Drôle</button>
                     <button class="style-button erase" onclick="eraseText()">Effacer</button>
                         <button class="style-button copy" onclick="copyText()" style="display: none;">Copier</button>
-                        <button class="style-button generate-img" onclick="generateImageFromPost()" style="display: none;">Générer une image</button>
-                        <button class="style-button translate" onclick="translateToEnglish()" style="display: none;">Traduire en anglais</button>
+                    <button class="style-button generate-img" onclick="generateImageFromPost()" style="display: none;">Générer une image</button>
+                    <button class="style-button translate" onclick="translateToEnglish()" style="display: none;">Traduire en anglais</button>
+                    <button class="share-button" id="shareToLinkedIn" style="display: none;">Partager sur LinkedIn</button>
                 </div>
             </div>
             <div class="credit">
@@ -3161,6 +3162,17 @@
             console.log(result);
         });
 
+        function updateShareButtonState() {
+            const shareButton = document.getElementById('shareToLinkedIn');
+            const textArea = document.getElementById('text-area');
+            if (!shareButton || !textArea) {
+                return;
+            }
+            const hasContent = textArea.textContent.trim().length > 0;
+            shareButton.disabled = !hasContent;
+            shareButton.style.display = hasContent ? 'inline-block' : 'none';
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
             const textArea = document.getElementById('text-area');
             const shareButton = document.getElementById('shareToLinkedIn');
@@ -3195,11 +3207,6 @@
                 document.body.classList.remove('dark-mode');
                 localStorage.setItem('theme', 'light');
             }
-        }
-
-        function loadTheme() {
-            const savedTheme = localStorage.getItem('theme') || 'light';
-            setTheme(savedTheme);
         }
 
         document.addEventListener('DOMContentLoaded', loadTheme);
